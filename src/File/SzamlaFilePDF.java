@@ -38,6 +38,7 @@ public class SzamlaFilePDF extends FilePDF {
             drawThread();
             cont.newLine();
             drawVonal();
+            cont.setFont(times, 9);
             addAru(megrendeles.getLista());
             super.endText();
             super.close();
@@ -51,12 +52,21 @@ public class SzamlaFilePDF extends FilePDF {
     private void addAru(List<Aru> lista) throws IOException {
         for (Aru aru : lista) {
             cont.newLineAtOffset(0, -20);
-            cont.showText(Integer.toString(aru.getCikkszam())+"               ");
-            cont.showText(aru.getNev()+offSetSpace(aru.getNev().length()));
-            cont.showText(Integer.toString(aru.getKeszlet())+"               ");
-            cont.showText(Integer.toString(aru.getAfa())+"             ");
-            cont.showText(Integer.toString(aru.getBrutto())+"           ");
+            cont.showText(Integer.toString(aru.getCikkszam()));
+            cont.showText(offSetSpace(Integer.toString(aru.getCikkszam()).length(),30));
+            cont.showText(aru.getNev());
+            cont.newLineAtOffset(0, 0);
+            cont.showText(offSetSpaceFromZeroToQuantity());
+            cont.showText(Integer.toString(aru.getKeszlet()));
+            cont.showText(offSetSpace(Integer.toString(aru.getKeszlet()).length(),30));
+            cont.showText(Integer.toString(aru.getAfa()));
+            cont.showText(offSetSpace(Integer.toString(aru.getAfa()).length(),32));
+            cont.showText(Integer.toString(aru.getBrutto()));
+            cont.newLineAtOffset(0, 0);
+            cont.showText(offSetSpaceFromZeroToNetto());
+             System.out.println(Integer.toString(aru.getBrutto()).length());
             cont.showText(Integer.toString(aru.getNetto()));
+           
 
         }
     }
@@ -90,6 +100,8 @@ public class SzamlaFilePDF extends FilePDF {
         cont.showText(Integer.toString(partner.getIranyitoszam()) + ", " + partner.getVaros());
         cont.newLineAtOffset(0, -30);
         cont.showText(partner.getCim());
+        
+        
     }
 
     private void drawVonal() throws IOException {
@@ -100,26 +112,39 @@ public class SzamlaFilePDF extends FilePDF {
     private void drawThread() throws IOException {
         for (String s : FEJLEC) {
             cont.showText(s + "          ");
-            
+
         }
     }
-    
-    private String offSetSpace(int length){
-        System.out.println(length);
-        int maxSpace=25;
-        String space=" ";
-        for (int i = 0; i < maxSpace-length; i++) {
-            space=space.concat(" ");
-            
+
+    private String offSetSpace(int length, int maxSpace) {
+        String space = "";
+        for (int i = 0; i < maxSpace - length; i++) {
+            space = space.concat(" ");
+
         }
-        StringBuffer sb=new StringBuffer("");
-        sb=sb.append(maxSpace-length);
-        
         
        
-        
+
         return space;
-        
+
+    }
+    
+    private String offSetSpaceFromZeroToQuantity( ) {
+        return "                                                                                       ";
+
+    }
+    
+     private String offSetSpaceFromZeroToNetto() {
+         String space="";
+         
+          for (int i = 0; i <200; i++) {
+            space = space.concat(" ");
+
+        }
+         
+        return space;  
+     
+
     }
 
 }

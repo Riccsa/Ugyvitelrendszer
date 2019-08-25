@@ -1,4 +1,4 @@
-
+    
 package DAO;
 
 import Egyedek.Kategoria;
