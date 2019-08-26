@@ -9,6 +9,7 @@ import DAO.PartnerRepositoryJDBC;
 import Egyedek.Aru;
 import Egyedek.Megrendeles;
 import File.MegrendelesFileCSV;
+import File.PDFFileView;
 import File.SzamlaFilePDF;
 import JTable.MegrendelesJTable;
 import Utils.Filter.Megrendeles.Allapot;
@@ -31,6 +32,7 @@ import java.util.stream.Collectors;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileView;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -90,7 +92,6 @@ public class MegrendelesDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         jFileChooser = new javax.swing.JFileChooser();
-        jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMegrendeles = new javax.swing.JTable();
@@ -101,7 +102,6 @@ public class MegrendelesDialog extends javax.swing.JDialog {
         btnReszlet = new javax.swing.JButton();
         lbMegrendeles = new java.awt.Label();
         btnUjMegrendeles = new javax.swing.JButton();
-        btnCSVExport = new javax.swing.JButton();
         lbSzmla = new java.awt.Label();
         btnTeljesitve = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -124,6 +124,7 @@ public class MegrendelesDialog extends javax.swing.JDialog {
         btnUjSzamla = new javax.swing.JButton();
         lbDatumKeres3 = new java.awt.Label();
         jButton1 = new javax.swing.JButton();
+        chkExport = new java.awt.Choice();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1920, 1080));
@@ -190,18 +191,6 @@ public class MegrendelesDialog extends javax.swing.JDialog {
         btnUjMegrendeles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUjMegrendelesActionPerformed(evt);
-            }
-        });
-
-        btnCSVExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/csv.png"))); // NOI18N
-        btnCSVExport.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnCSVExport.setBorderPainted(false);
-        btnCSVExport.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCSVExport.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        btnCSVExport.setFocusable(false);
-        btnCSVExport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCSVExportActionPerformed(evt);
             }
         });
 
@@ -310,12 +299,21 @@ public class MegrendelesDialog extends javax.swing.JDialog {
         });
 
         lbDatumKeres3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        lbDatumKeres3.setText("CSV \nexport");
+        lbDatumKeres3.setText("Export");
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        chkExport.add("");
+        chkExport.add("*.csv");
+        chkExport.add("*.pdf");
+        chkExport.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                chkExportItemStateChanged(evt);
             }
         });
 
@@ -340,15 +338,15 @@ public class MegrendelesDialog extends javax.swing.JDialog {
                                         .addComponent(lbModosit1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lbMegrendeles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(23, 23, 23)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnCSVExport, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbDatumKeres3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbSzmla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnUjSzamla, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(22, 22, 22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(chkExport, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbDatumKeres3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,17 +440,19 @@ public class MegrendelesDialog extends javax.swing.JDialog {
                         .addGap(41, 41, 41))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnUjMegrendeles, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnReszlet, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCSVExport, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUjSzamla, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(choiceRendez, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbModosit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbMegrendeles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbDatumKeres3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbSzmla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnUjMegrendeles, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnReszlet, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnUjSzamla, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(choiceRendez, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(chkExport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(25, 25, 25)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbModosit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbMegrendeles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbSzmla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lbDatumKeres3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(31, 31, 31)))
@@ -483,13 +483,13 @@ public class MegrendelesDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 519, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -518,18 +518,6 @@ public class MegrendelesDialog extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_btnUjMegrendelesActionPerformed
-
-    private void btnCSVExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCSVExportActionPerformed
-        
-      
-        
-        int retValue = jFileChooser.showSaveDialog(this);
-
-        if (retValue == JFileChooser.APPROVE_OPTION) {
-            MegrendelesFileCSV mf = new MegrendelesFileCSV(jFileChooser.getSelectedFile());
-            mf.exportCSV(lista);
-        }
-    }//GEN-LAST:event_btnCSVExportActionPerformed
 
     private void tfKeresesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfKeresesKeyReleased
         if (tfKereses.getText().equals("")) {
@@ -783,6 +771,35 @@ public class MegrendelesDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void chkExportItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkExportItemStateChanged
+        if (chkExport.getSelectedIndex() > 0) {
+  
+            jFileChooser.setDialogTitle("Mentés");
+            jFileChooser.setApproveButtonText("Mentés");
+            jFileChooser.setFileView(new PDFFileView());
+            jFileChooser.setAcceptAllFileFilterUsed(false);
+           
+            int retValue = jFileChooser.showSaveDialog(this);
+            
+
+            if (retValue == JFileChooser.APPROVE_OPTION) {
+
+                switch (chkExport.getSelectedItem()) {
+                    case ("*.csv"):
+                        MegrendelesFileCSV mf = new MegrendelesFileCSV(jFileChooser.getSelectedFile());
+                        mf.exportCSV(lista);
+                        break;
+
+                    case ("*.pdf"):
+                        SzamlaFilePDF fileDPF = new SzamlaFilePDF(jFileChooser.getSelectedFile());
+                        fileDPF.create(megrendeles);
+
+                }
+
+            }
+        }
+    }//GEN-LAST:event_chkExportItemStateChanged
+
     private void setTableModel() {
 
         jTableMegrendeles.setModel(tableModel);
@@ -892,13 +909,13 @@ public class MegrendelesDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCSVExport;
     private javax.swing.JButton btnFilterTorol;
     private javax.swing.JButton btnKeres;
     private javax.swing.JButton btnReszlet;
     private javax.swing.JButton btnTeljesitve;
     private javax.swing.JButton btnUjMegrendeles;
     private javax.swing.JButton btnUjSzamla;
+    private java.awt.Choice chkExport;
     private javax.swing.JCheckBox chkbxBejovo;
     private javax.swing.JCheckBox chkbxKimeno;
     private javax.swing.JCheckBox chkbxMegrendelt;
@@ -914,7 +931,6 @@ public class MegrendelesDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTableMegrendeles;
