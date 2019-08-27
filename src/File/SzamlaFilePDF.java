@@ -64,7 +64,6 @@ public class SzamlaFilePDF extends FilePDF {
             cont.showText(Integer.toString(aru.getBrutto()));
             cont.newLineAtOffset(0, 0);
             cont.showText(offSetSpaceFromZeroToNetto());
-             System.out.println(Integer.toString(aru.getBrutto()).length());
             cont.showText(Integer.toString(aru.getNetto()));
            
 

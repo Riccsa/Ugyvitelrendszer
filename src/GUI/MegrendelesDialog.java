@@ -10,6 +10,7 @@ import Egyedek.Aru;
 import Egyedek.Megrendeles;
 import File.MegrendelesFileCSV;
 import File.PDFFileView;
+import File.PDFFilter;
 import File.SzamlaFilePDF;
 import JTable.MegrendelesJTable;
 import Utils.Filter.Megrendeles.Allapot;
@@ -21,6 +22,7 @@ import Utils.Filter.Megrendeles.Tipus;
 import Utils.Pattern.MegrendelesPattern;
 import Utils.PatternFactory;
 import java.awt.Dialog;
+import java.io.File;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -772,14 +774,20 @@ public class MegrendelesDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void chkExportItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkExportItemStateChanged
+        
         if (chkExport.getSelectedIndex() > 0) {
+            
+            PDFFilter filt=new PDFFilter();
   
             jFileChooser.setDialogTitle("Mentés");
             jFileChooser.setApproveButtonText("Mentés");
-            jFileChooser.setFileView(new PDFFileView());
-            jFileChooser.setAcceptAllFileFilterUsed(false);
+            jFileChooser.setFileView(new PDFFileView());        
+            jFileChooser.setFileFilter(filt);
+            jFileChooser.setDialogType(2);
            
-            int retValue = jFileChooser.showSaveDialog(this);
+            int retValue = jFileChooser.showDialog(this,"Mentés");
+            
+            
             
 
             if (retValue == JFileChooser.APPROVE_OPTION) {
@@ -791,7 +799,11 @@ public class MegrendelesDialog extends javax.swing.JDialog {
                         break;
 
                     case ("*.pdf"):
-                        SzamlaFilePDF fileDPF = new SzamlaFilePDF(jFileChooser.getSelectedFile());
+                        File file=jFileChooser.getSelectedFile();
+                        File fileNew=new File(file.getAbsolutePath()+".pdf");
+                        
+                        SzamlaFilePDF fileDPF = new SzamlaFilePDF(fileNew);
+                        
                         fileDPF.create(megrendeles);
 
                 }
