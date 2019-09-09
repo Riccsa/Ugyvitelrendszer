@@ -23,7 +23,8 @@ public class CSVFilter  extends FileFilter{
 
     @Override
     public String getDescription() {
-        return "*.csv";
+        return ".csv";
     }
+    
     
 }

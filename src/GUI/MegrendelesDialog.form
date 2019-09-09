@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
-  <NonVisualComponents>
-    <Component class="javax.swing.JFileChooser" name="jFileChooser">
-    </Component>
-  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -167,63 +163,54 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="chkbxMegrendelt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfRogzitDateFrom" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfRogzitDateTo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="chkbxTeljesitett" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="tfTeljesitDateFrom" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfTeljesitDateTo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="chkbxKimeno" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="chkbxBejovo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnFilterTorol" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jSeparator1" min="-2" pref="118" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="chkbxMegrendelt" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tfRogzitDateFrom" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tfRogzitDateTo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="chkbxTeljesitett" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="tfTeljesitDateFrom" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tfTeljesitDateTo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="chkbxKimeno" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="chkbxBejovo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="btnFilterTorol" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jSeparator1" min="-2" pref="118" max="-2" attributes="0"/>
+                              <Component id="btnUjMegrendeles" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                              <Component id="btnReszlet" min="-2" pref="80" max="-2" attributes="0"/>
+                              <Component id="btnUjSzamla" min="-2" pref="80" max="-2" attributes="0"/>
+                              <Component id="choiceRendez" min="-2" pref="48" max="-2" attributes="0"/>
+                              <Component id="chkExport" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnUjMegrendeles" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                                      <Component id="btnReszlet" min="-2" pref="80" max="-2" attributes="0"/>
-                                      <Component id="btnUjSzamla" min="-2" pref="80" max="-2" attributes="0"/>
-                                      <Component id="choiceRendez" min="-2" pref="48" max="-2" attributes="0"/>
-                                      <Component id="chkExport" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lbModosit1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbMegrendeles" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbSzmla" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="lbDatumKeres3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbModosit1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbMegrendeles" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbSzmla" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="lbDatumKeres3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jScrollPane1" min="-2" pref="329" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">

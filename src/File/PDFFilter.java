@@ -23,7 +23,8 @@ public class PDFFilter  extends FileFilter{
 
     @Override
     public String getDescription() {
-        return "*.pdf";
+        return ".pdf";
     }
+
     
 }
