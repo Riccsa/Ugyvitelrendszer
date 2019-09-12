@@ -14,6 +14,10 @@ public class Foablak extends javax.swing.JFrame {
     public Foablak()  {
        
         initComponents();
+        
+        BelepesDialog belepes=new BelepesDialog(this, true);
+        belepes.setVisible(true);
+        
     }
 
     /**

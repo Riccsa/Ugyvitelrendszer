@@ -17,6 +17,7 @@ public class DolgozoRepositoryJDBC implements RepositoryJDBC<Dolgozo> {
     private PreparedStatement findAll;
     private PreparedStatement findByName;
     private PreparedStatement findById;
+    private PreparedStatement findPasswordByDolgozoId;
     private PreparedStatement add;
     private PreparedStatement delete;
     private PreparedStatement update;
@@ -29,6 +30,7 @@ public class DolgozoRepositoryJDBC implements RepositoryJDBC<Dolgozo> {
         this.findAll = SQL.getConnection().prepareStatement("SELECT * FROM dolgozo;");
         this.findById = SQL.getConnection().prepareStatement("SELECT * FROM dolgozo WHERE id=?;");
         this.findByName = SQL.getConnection().prepareStatement("SELECT * FROM dolgozo WHERE nev=?;");
+        this.findPasswordByDolgozoId=SQL.getConnection().prepareStatement("SELECT * FROM ugyvitel.jelszo WHERE dolgozo_id=?");
         this.delete = SQL.getConnection().prepareStatement("DELETE FROM dolgozo WHERE id=?;");
 
     }
@@ -102,6 +104,24 @@ public class DolgozoRepositoryJDBC implements RepositoryJDBC<Dolgozo> {
         update.setInt(8, dolgozo.getId());
         update.executeUpdate();
 
+    }
+    
+    public boolean findPassWordByDolgozoId(Integer id, Integer passWordFromUser) throws SQLException{
+        
+         findPasswordByDolgozoId.setInt(1, id);
+         ResultSet rs = findPasswordByDolgozoId.executeQuery();
+         Integer passWordFromDB=null;
+
+        while (rs.next()) {
+            passWordFromDB=rs.getInt("jelszo");
+        }
+     
+     if(passWordFromDB!=null){
+         return passWordFromUser.intValue()==passWordFromDB.intValue();
+     }
+
+        return false;
+        
     }
 
     private List<Dolgozo> makeList(ResultSet rs) throws SQLException {

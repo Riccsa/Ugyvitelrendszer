@@ -9,7 +9,6 @@ import Egyedek.Kategoria;
 import Egyedek.Megrendeles;
 import File.AruFileCSV;
 import File.CSVFilter;
-import File.MegrendelesFileCSV;
 import File.MyFileChooser;
 import JTable.AruJTable;
 import Utils.Comparator.AruDbComparator;
@@ -65,6 +64,7 @@ public class AruDialog extends javax.swing.JDialog {
         super(parent, modal);
         try {
             katLista = new KategoriaRepositoryJDBC().findAll();
+            this.aruJDBC=new AruRepositoryJDBC();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
 
@@ -246,7 +246,7 @@ public class AruDialog extends javax.swing.JDialog {
                     .addComponent(lbDatumKeres2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbTorol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbUj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbModosit1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbModosit1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
@@ -649,6 +649,7 @@ public class AruDialog extends javax.swing.JDialog {
             } catch (SQLException ex) {
 
             }
+           
         }
         
     }//GEN-LAST:event_jTableAruMouseReleased

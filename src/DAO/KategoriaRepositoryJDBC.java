@@ -28,7 +28,6 @@ public class KategoriaRepositoryJDBC implements RepositoryJDBC<Kategoria> {
         this.findById = SQL.getConnection().prepareStatement("SELECT * FROM kategoria WHERE id=?;");
         this.findByName = SQL.getConnection().prepareStatement("SELECT * FROM kategoria WHERE nev=?;");
         this.delete = SQL.getConnection().prepareStatement("DELETE FROM kategoria WHERE id=?;");
-
     }
 
     @Override

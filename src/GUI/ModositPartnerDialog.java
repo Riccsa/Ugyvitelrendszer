@@ -98,16 +98,15 @@ public class ModositPartnerDialog extends javax.swing.JDialog {
         lbAdoSzamCheck = new javax.swing.JLabel();
         lbIrSzamCheck = new javax.swing.JLabel();
         choiceTipus = new java.awt.Choice();
-        jLabelPanel = new javax.swing.JPanel();
         lbNev = new javax.swing.JLabel();
         lbIrSzam = new javax.swing.JLabel();
         lbVaros = new javax.swing.JLabel();
         lbCim = new javax.swing.JLabel();
         lbTipus = new javax.swing.JLabel();
-        lbUgyfelNev = new javax.swing.JLabel();
-        lbUgyfelTelSzam = new javax.swing.JLabel();
         lbUgyfelEmail = new javax.swing.JLabel();
+        lbUgyfelNev = new javax.swing.JLabel();
         lbId = new javax.swing.JLabel();
+        lbUgyfelTelSzam = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -285,93 +284,81 @@ public class ModositPartnerDialog extends javax.swing.JDialog {
         lbTipus.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbTipus.setText("Típus:");
 
+        lbUgyfelEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbUgyfelEmail.setText("Kapcsolattartó neve:");
+
         lbUgyfelNev.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbUgyfelNev.setText("Kapcsolattartó email címe:");
         lbUgyfelNev.setToolTipText("");
 
-        lbUgyfelTelSzam.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbUgyfelTelSzam.setText("Kapcsolattartó  telefonszáma:");
-
-        lbUgyfelEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbUgyfelEmail.setText("Kapcsolattartó neve:");
-
         lbId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbId.setText("Adószám:");
 
-        javax.swing.GroupLayout jLabelPanelLayout = new javax.swing.GroupLayout(jLabelPanel);
-        jLabelPanel.setLayout(jLabelPanelLayout);
-        jLabelPanelLayout.setHorizontalGroup(
-            jLabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLabelPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jLabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbNev, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbId, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbIrSzam, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbTipus, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbUgyfelNev, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbUgyfelEmail, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbUgyfelTelSzam, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jLabelPanelLayout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(lbCim))
-                        .addComponent(lbVaros, javax.swing.GroupLayout.Alignment.TRAILING))))
-        );
-        jLabelPanelLayout.setVerticalGroup(
-            jLabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLabelPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbNev, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(lbId)
-                .addGap(18, 18, 18)
-                .addComponent(lbIrSzam, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(lbVaros, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbCim)
-                .addGap(23, 23, 23)
-                .addComponent(lbTipus)
-                .addGap(18, 18, 18)
-                .addComponent(lbUgyfelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbUgyfelTelSzam, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbUgyfelNev, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
-        );
+        lbUgyfelTelSzam.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbUgyfelTelSzam.setText("Kapcsolattartó  telefonszáma:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jLabelPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(252, 252, 252)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbId)
+                            .addComponent(lbIrSzam, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbVaros)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbCim, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbTipus, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbUgyfelEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbUgyfelNev, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbUgyfelTelSzam, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbNev, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMegse, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(211, 211, 211)
-                            .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(35, 35, 35)
-                            .addComponent(btnMegse, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(49, 49, 49)
-                            .addComponent(jTextPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(211, 211, 211)
+                        .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(btnMegse, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 53, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbNev, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbId)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbIrSzam, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(lbVaros)
+                                .addGap(26, 26, 26)
+                                .addComponent(lbCim)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbTipus)
+                                .addGap(28, 28, 28)
+                                .addComponent(lbUgyfelEmail)
+                                .addGap(27, 27, 27)
+                                .addComponent(lbUgyfelNev)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbUgyfelTelSzam)
+                                .addGap(56, 56, 56)))))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pack();
@@ -478,7 +465,6 @@ public class ModositPartnerDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnMegse;
     private javax.swing.JButton btnOk;
     private java.awt.Choice choiceTipus;
-    private javax.swing.JPanel jLabelPanel;
     private javax.swing.JPanel jTextPanel;
     private javax.swing.JLabel lbAdoSzamCheck;
     private javax.swing.JLabel lbCim;

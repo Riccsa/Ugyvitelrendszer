@@ -231,7 +231,7 @@
                           <Component id="lbDatumKeres2" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="lbTorol" min="-2" max="-2" attributes="0"/>
                           <Component id="lbUj" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbModosit1" min="-2" pref="19" max="-2" attributes="0"/>
+                          <Component id="lbModosit1" alignment="1" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="47" max="32767" attributes="0"/>
                   </Group>

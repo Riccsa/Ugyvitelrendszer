@@ -34,6 +34,7 @@ public class AruFileCSV implements FileCSV<Aru>{
         } catch (IOException ex) {
                          
         }
+           
         
     }
     

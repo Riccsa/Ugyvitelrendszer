@@ -43,7 +43,6 @@ public class AruRepositoryJDBC  implements RepositoryJDBC<Aru>{
         this.findByKat = SQL.getConnection().prepareStatement(selectAll + "WHERE kategoria_id=?");
         this.findByGyarto = SQL.getConnection().prepareStatement(selectAll + "WHERE gyarto=?"); 
         this.findByCikkSzam=SQL.getConnection().prepareStatement(selectAll+ "WHERE cikkszam=?");
-
         
     }
 
