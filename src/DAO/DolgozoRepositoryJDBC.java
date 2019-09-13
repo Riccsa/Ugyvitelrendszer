@@ -25,19 +25,19 @@ public class DolgozoRepositoryJDBC implements RepositoryJDBC<Dolgozo> {
 
     public DolgozoRepositoryJDBC() throws SQLException {
 
-        this.add = SQL.getConnection().prepareStatement("INSERT INTO dolgozo(nev,szemelyi_szam,szuletesi_hely,szuletesi_ido,lakhely,beosztas,email) VALUES( ?,?,?,?,?,?,?);",Statement.RETURN_GENERATED_KEYS);
+        this.add = SQL.getConnection().prepareStatement("INSERT INTO dolgozo(nev,szemelyi_szam,szuletesi_hely,szuletesi_ido,lakhely,beosztas,email) VALUES( ?,?,?,?,?,?,?);", Statement.RETURN_GENERATED_KEYS);
         this.update = SQL.getConnection().prepareStatement("UPDATE dolgozo SET nev=?,szemelyi_szam=?,szuletesi_hely=?,szuletesi_ido=?,lakhely=?,beosztas=?,email=? WHERE id = ?");
         this.findAll = SQL.getConnection().prepareStatement("SELECT * FROM dolgozo;");
         this.findById = SQL.getConnection().prepareStatement("SELECT * FROM dolgozo WHERE id=?;");
         this.findByName = SQL.getConnection().prepareStatement("SELECT * FROM dolgozo WHERE nev=?;");
-        this.findPasswordByDolgozoId=SQL.getConnection().prepareStatement("SELECT * FROM ugyvitel.jelszo WHERE dolgozo_id=?");
+        this.findPasswordByDolgozoId = SQL.getConnection().prepareStatement("SELECT * FROM ugyvitel.jelszo WHERE dolgozo_id=?");
         this.delete = SQL.getConnection().prepareStatement("DELETE FROM dolgozo WHERE id=?;");
 
     }
 
     @Override
-    public List<Dolgozo> findAll() throws SQLException{
-        
+    public List<Dolgozo> findAll() throws SQLException {
+
         return makeList(findAll.executeQuery());
     }
 
@@ -62,7 +62,7 @@ public class DolgozoRepositoryJDBC implements RepositoryJDBC<Dolgozo> {
 
     @Override
     public Integer add(Dolgozo dolgozo) throws SQLException {
-        
+
         Integer keyValue = null;
 
         add.setString(1, dolgozo.getNev());
@@ -73,13 +73,13 @@ public class DolgozoRepositoryJDBC implements RepositoryJDBC<Dolgozo> {
         add.setString(6, dolgozo.getBeosztas());
         add.setString(7, dolgozo.getEmail());
         add.executeUpdate();
-        
-        ResultSet key= add.getGeneratedKeys();
-        while(key.next()){
-            keyValue=key.getInt(1);
+
+        ResultSet key = add.getGeneratedKeys();
+        while (key.next()) {
+            keyValue = key.getInt(1);
         }
         return keyValue;
-        
+
     }
 
     @Override
@@ -90,8 +90,6 @@ public class DolgozoRepositoryJDBC implements RepositoryJDBC<Dolgozo> {
 
     }
 
-    
-   
     @Override
     public void update(Dolgozo dolgozo) throws SQLException {
         update.setString(1, dolgozo.getNev());
@@ -105,23 +103,19 @@ public class DolgozoRepositoryJDBC implements RepositoryJDBC<Dolgozo> {
         update.executeUpdate();
 
     }
-    
-    public boolean findPassWordByDolgozoId(Integer id, Integer passWordFromUser) throws SQLException{
-        
-         findPasswordByDolgozoId.setInt(1, id);
-         ResultSet rs = findPasswordByDolgozoId.executeQuery();
-         Integer passWordFromDB=null;
+
+    public String findPassWordByDolgozoId(Integer id) throws SQLException {
+
+        findPasswordByDolgozoId.setInt(1, id);
+        ResultSet rs = findPasswordByDolgozoId.executeQuery();
+        String passWord = "";
 
         while (rs.next()) {
-            passWordFromDB=rs.getInt("jelszo");
+            passWord = rs.getString("jelszo");
         }
-     
-     if(passWordFromDB!=null){
-         return passWordFromUser.intValue()==passWordFromDB.intValue();
-     }
 
-        return false;
-        
+        return passWord;
+
     }
 
     private List<Dolgozo> makeList(ResultSet rs) throws SQLException {
@@ -137,8 +131,7 @@ public class DolgozoRepositoryJDBC implements RepositoryJDBC<Dolgozo> {
 
     }
 
-
-    private Dolgozo makeOne(ResultSet rs) throws SQLException{
+    private Dolgozo makeOne(ResultSet rs) throws SQLException {
 
         return new Dolgozo(rs.getInt("id"), rs.getString("nev"), rs.getString("szemelyi_szam"), rs.getString("szuletesi_hely"), rs.getDate("szuletesi_ido").toLocalDate(), rs.getString("lakhely"), rs.getString("beosztas"), rs.getString("email"));
 

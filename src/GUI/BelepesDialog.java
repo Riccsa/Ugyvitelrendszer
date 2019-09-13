@@ -7,6 +7,7 @@ package GUI;
 
 import DAO.DolgozoRepositoryJDBC;
 import Egyedek.Dolgozo;
+import Egyedek.User;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +21,7 @@ public class BelepesDialog extends javax.swing.JDialog {
     
     private DolgozoRepositoryJDBC dolgozoJDBC;
     private List<Dolgozo> lista;
-    private Dolgozo dolgozo;
+    private Dolgozo activeUser;
     private HashMap<Integer,Integer> map;
     private Integer dolgozoID;
     private boolean kilepes=false;
@@ -33,7 +34,7 @@ public class BelepesDialog extends javax.swing.JDialog {
             lista = dolgozoJDBC.findAll();
             map=new HashMap<>();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+          
         }
 
         initComponents();
@@ -64,6 +65,11 @@ public class BelepesDialog extends javax.swing.JDialog {
         btnKilepes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         int index=0;
         for(Dolgozo dolgozo: lista){
@@ -148,19 +154,21 @@ public class BelepesDialog extends javax.swing.JDialog {
 
     private void btnBelepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBelepesActionPerformed
         try {
-            if (dolgozoJDBC.findPassWordByDolgozoId(dolgozoID, Integer.parseInt(tfPass.getText()))) {
+
+            String passWord = dolgozoJDBC.findPassWordByDolgozoId(dolgozoID);
+
+            if (passWord.equals(tfPass.getText()) && passWord!="") {
+                User.setActiveUser(dolgozoJDBC.findById(dolgozoID));
                 this.setVisible(false);
             } else {
-                
                 JOptionPane.showMessageDialog(rootPane, "A jelszó hibás!", "Hiba", JOptionPane.ERROR_MESSAGE);
-
             }
+
         } catch (SQLException ex) {
-          
 
         }
 
-            
+
     }//GEN-LAST:event_btnBelepesActionPerformed
 
     private void btnKilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKilepesActionPerformed
@@ -169,10 +177,22 @@ public class BelepesDialog extends javax.swing.JDialog {
 
     private void choiceDolgozoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_choiceDolgozoItemStateChanged
        dolgozoID=map.get(choiceDolgozo.getSelectedIndex());
-       System.out.println(dolgozoID);
              
     }//GEN-LAST:event_choiceDolgozoItemStateChanged
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+         System.exit(0);
+    }//GEN-LAST:event_formWindowClosed
+    
+    private void setActiveUser(Dolgozo dolgozo){
+        this.activeUser=dolgozo;
+    }
+    
+    public Dolgozo getActiveUser() {
+        return activeUser;
+    }
+
+    
     /**
      * @param args the command line arguments
      */
