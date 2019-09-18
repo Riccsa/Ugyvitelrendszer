@@ -13,6 +13,7 @@ import Egyedek.Aru;
 import Egyedek.Dolgozo;
 import Egyedek.Megrendeles;
 import Egyedek.Partner;
+import Egyedek.User;
 import JTable.AruJTable;
 import Math.Calc;
 import java.sql.SQLException;
@@ -85,8 +86,6 @@ public class UjMegrendelesDialog extends javax.swing.JDialog {
         jTableAru = new javax.swing.JTable();
         choiceAru = new java.awt.Choice();
         jLabel1 = new javax.swing.JLabel();
-        choiceDolgozo = new java.awt.Choice();
-        lbDolgozo = new javax.swing.JLabel();
         choicePartner = new java.awt.Choice();
         lbBeszallito = new javax.swing.JLabel();
         tfDb = new javax.swing.JTextField();
@@ -159,20 +158,6 @@ public class UjMegrendelesDialog extends javax.swing.JDialog {
 
         jLabel1.setText("     Raktáron lévő árulista");
 
-        for(Dolgozo dolgozo : dolgLista){
-            String dolgozoNev= dolgozo.getNev();
-            choiceDolgozo.add(dolgozoNev);
-        }
-
-        dolgozo=dolgLista.get(choiceDolgozo.getSelectedIndex());
-        choiceDolgozo.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                choiceDolgozoItemStateChanged(evt);
-            }
-        });
-
-        lbDolgozo.setText("     A rendelést rögzíti");
-
         for(Partner partner : beszallitoLista){
 
             if(partner.getTipus().equals(Partner.BESZALLITO)){
@@ -229,15 +214,12 @@ public class UjMegrendelesDialog extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lbDolgozo)
-                                    .addComponent(lbBeszallito))))
+                                .addGap(60, 60, 60)
+                                .addComponent(lbBeszallito)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(choicePartner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                            .addComponent(choiceAru, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(choiceDolgozo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(choiceAru, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(27, 27, 27)
                         .addComponent(tfDb, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -272,11 +254,7 @@ public class UjMegrendelesDialog extends javax.swing.JDialog {
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbBeszallito)
-                            .addComponent(choicePartner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(choiceDolgozo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbDolgozo))))
+                            .addComponent(choicePartner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbOsszeg, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -356,8 +334,9 @@ public class UjMegrendelesDialog extends javax.swing.JDialog {
       if(retValue==JOptionPane.YES_OPTION){
           ok=true;
           int rendelesiSzam=(int)(Math.random()*100000)+10000;
-          megrendeles=new Megrendeles(ujAruLista,rendelesiSzam,dolgozo, partner,LocalDateTime.now(),Megrendeles.MEGRENDELT,Megrendeles.KIMENO,calc.getSum());
+          megrendeles=new Megrendeles(ujAruLista,rendelesiSzam,User.geActiveUser(), partner,LocalDateTime.now(),Megrendeles.MEGRENDELT,Megrendeles.KIMENO,calc.getSum());
           this.setVisible(false);
+ 
       }
       
     }//GEN-LAST:event_btnRogzitActionPerformed
@@ -370,10 +349,6 @@ public class UjMegrendelesDialog extends javax.swing.JDialog {
     private void choiceAruItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_choiceAruItemStateChanged
         aru=aruLista.get(choiceAru.getSelectedIndex());
     }//GEN-LAST:event_choiceAruItemStateChanged
-
-    private void choiceDolgozoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_choiceDolgozoItemStateChanged
-        dolgozo=dolgLista.get(choiceDolgozo.getSelectedIndex());            
-    }//GEN-LAST:event_choiceDolgozoItemStateChanged
 
     private void choicePartnerItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_choicePartnerItemStateChanged
         partner=beszallitoLista.get(choicePartner.getSelectedIndex());      
@@ -459,14 +434,12 @@ public class UjMegrendelesDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnTorol;
     private javax.swing.JButton btnUjAru;
     private java.awt.Choice choiceAru;
-    private java.awt.Choice choiceDolgozo;
     private java.awt.Choice choicePartner;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableAru;
     private javax.swing.JLabel lbBeszallito;
-    private javax.swing.JLabel lbDolgozo;
     private java.awt.Label lbEredmeny;
     private javax.swing.JLabel lbHelytelenFormatum;
     private java.awt.Label lbOsszeg;

@@ -13,6 +13,7 @@ public class Dolgozo implements Egyed{
     private String lakhely;
     private String beosztas;
     private String email;
+    
 
     public Dolgozo(Integer id, String nev, String szemelyiSzam, String szuletesiHely, LocalDate szuletesiDatum, String lakhely, String beosztas, String email) {
        

@@ -33,9 +33,7 @@ public class Foablak extends javax.swing.JFrame {
         jbtnAruKeszlet = new javax.swing.JButton();
         jbtnDolgozok = new javax.swing.JButton();
         jbtnPartner = new javax.swing.JButton();
-        jbtnSzamla = new javax.swing.JButton();
         jbtnMegrendeles = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -75,24 +73,10 @@ public class Foablak extends javax.swing.JFrame {
             }
         });
 
-        jbtnSzamla.setText("Számlakezelő");
-        jbtnSzamla.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnSzamlaActionPerformed(evt);
-            }
-        });
-
         jbtnMegrendeles.setText("Megrendelések");
         jbtnMegrendeles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnMegrendelesActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
             }
         });
 
@@ -101,18 +85,11 @@ public class Foablak extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbtnSzamla, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbtnAruKeszlet, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnDolgozok, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(65, 65, 65)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbtnDolgozok, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnAruKeszlet, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(132, 132, 132)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbtnMegrendeles, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jbtnPartner, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -121,22 +98,15 @@ public class Foablak extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jButton1)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbtnPartner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbtnAruKeszlet, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(72, 72, 72)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbtnSzamla, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbtnMegrendeles, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(jbtnDolgozok, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addGap(117, 117, 117)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnPartner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnAruKeszlet, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnDolgozok, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnMegrendeles, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 490));
@@ -148,10 +118,6 @@ public class Foablak extends javax.swing.JFrame {
        AruDialog aru=new AruDialog(this, true);
         aru.setVisible(true);   
     }//GEN-LAST:event_jbtnAruKeszletActionPerformed
-
-    private void jbtnSzamlaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSzamlaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnSzamlaActionPerformed
 
     private void jbtnDolgozokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDolgozokActionPerformed
         
@@ -165,33 +131,16 @@ public class Foablak extends javax.swing.JFrame {
              
     }//GEN-LAST:event_jbtnDolgozokActionPerformed
 
-    private void jbtnMegrendelesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnMegrendelesActionPerformed
-        MegrendelesDialog dialog=new MegrendelesDialog(this, true);
-        dialog.setVisible(true);
-    }//GEN-LAST:event_jbtnMegrendelesActionPerformed
-
     private void jbtnPartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPartnerActionPerformed
         
                 PartnerDialog partner=new PartnerDialog(this, true);
                 partner.setVisible(true);
     }//GEN-LAST:event_jbtnPartnerActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        String[] args={"/c ipm.note","/m  valaki@gmail.com","/a h:\\Doksik\\szerzodesegyenleg_13511274.pdf"};
-         String path="C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\OUTLOOK.EXE";
-         String[] valami=new String[2];
-         valami[0]="/c ipm.note";
-         valami[1]="/m  valaki@gmail.com";
-         
-        try {
-            //Runtime.getRuntime().exec("C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\OUTLOOK.EXE /c ipm.note /m  valaki@gmail.com  proba /a h:\\Doksik\\szerzodesegyenleg_13511274.pdf");
-              Runtime.getRuntime().exec(path,valami);
-        } catch (IOException ex) {
-            Logger.getLogger(Foablak.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jbtnMegrendelesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnMegrendelesActionPerformed
+        MegrendelesDialog dialog=new MegrendelesDialog(this, true);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_jbtnMegrendelesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,12 +159,10 @@ public class Foablak extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbtnAruKeszlet;
     private javax.swing.JButton jbtnDolgozok;
     private javax.swing.JButton jbtnMegrendeles;
     private javax.swing.JButton jbtnPartner;
-    private javax.swing.JButton jbtnSzamla;
     // End of variables declaration//GEN-END:variables
 }

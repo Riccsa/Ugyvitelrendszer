@@ -56,18 +56,14 @@
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="lbDolgozo" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbBeszallito" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="lbBeszallito" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="choicePartner" alignment="0" pref="199" max="32767" attributes="0"/>
                           <Component id="choiceAru" max="32767" attributes="0"/>
-                          <Component id="choiceDolgozo" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="tfDb" min="-2" pref="49" max="-2" attributes="0"/>
@@ -113,11 +109,6 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lbBeszallito" min="-2" max="-2" attributes="0"/>
                           <Component id="choicePartner" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="choiceDolgozo" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbDolgozo" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -231,19 +222,6 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="     Rakt&#xe1;ron l&#xe9;v&#x151; &#xe1;rulista"/>
-      </Properties>
-    </Component>
-    <Component class="java.awt.Choice" name="choiceDolgozo">
-      <Events>
-        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="choiceDolgozoItemStateChanged"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="&#xd;&#xa;for(Dolgozo dolgozo : dolgLista){&#xd;&#xa;String dolgozoNev= dolgozo.getNev();&#xd;&#xa;choiceDolgozo.add(dolgozoNev);&#xd;&#xa;}&#xd;&#xa;&#xd;&#xa; dolgozo=dolgLista.get(choiceDolgozo.getSelectedIndex());   "/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbDolgozo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="     A rendel&#xe9;st r&#xf6;gz&#xed;ti"/>
       </Properties>
     </Component>
     <Component class="java.awt.Choice" name="choicePartner">

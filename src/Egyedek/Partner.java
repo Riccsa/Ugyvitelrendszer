@@ -17,6 +17,7 @@ public class Partner implements Egyed{
     
     public static final String BESZALLITO="beszállító";
     public static final String VEVO="vevő";
+    
 
     public Partner(Integer id, String nev, Integer adoszam, int iranyitoszam, String varos, String cim, String tipus, String kapcsolattarto_nev, String kapcsolatto_telszam, String kapcsolattarto_email) {
         this.id = id;
