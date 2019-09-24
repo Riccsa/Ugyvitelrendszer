@@ -13,7 +13,7 @@ public class Partner implements Egyed{
     private String tipus;
     private String kapcsolattarto_nev;
     private String kapcsolattarto_email;
-    private String kapcsolatto_telszam;
+    private String kapcsolattarto_telszam;
     
     public static final String BESZALLITO="beszállító";
     public static final String VEVO="vevő";
@@ -29,7 +29,7 @@ public class Partner implements Egyed{
         this.tipus = tipus;
         this.kapcsolattarto_nev = kapcsolattarto_nev;
         this.kapcsolattarto_email = kapcsolattarto_email;
-        this.kapcsolatto_telszam = kapcsolatto_telszam;
+        this.kapcsolattarto_telszam = kapcsolatto_telszam;
     }
 
     public Partner(String nev, Integer adoszam, int iranyitoszam, String varos, String cim, String tipus,  String kapcsolattarto_nev, String kapcsolatto_telszam, String kapcsolattarto_email) {
@@ -41,7 +41,7 @@ public class Partner implements Egyed{
         this.tipus = tipus;
         this.kapcsolattarto_nev = kapcsolattarto_nev;
         this.kapcsolattarto_email = kapcsolattarto_email;
-        this.kapcsolatto_telszam = kapcsolatto_telszam;
+        this.kapcsolattarto_telszam = kapcsolatto_telszam;
     }
     
     
@@ -116,12 +116,12 @@ public class Partner implements Egyed{
         this.kapcsolattarto_email = kapcsolattarto_email;
     }
 
-    public String getKapcsolatto_telszam() {
-        return kapcsolatto_telszam;
+    public String getKapcsolattarto_telszam() {
+        return kapcsolattarto_telszam;
     }
 
-    public void setKapcsolatto_telszam(String kapcsolatto_telszam) {
-        this.kapcsolatto_telszam = kapcsolatto_telszam;
+    public void setKapcsolattarto_telszam(String kapcsolattarto_telszam) {
+        this.kapcsolattarto_telszam = kapcsolattarto_telszam;
     }
 
     @Override
@@ -136,8 +136,8 @@ public class Partner implements Egyed{
         object[5] = this.cim;
         object[6] = this.tipus;
         object[7] = this.kapcsolattarto_nev;
-        object[8] = this.kapcsolattarto_email;
-        object[9] = this.kapcsolatto_telszam;
+        object[8] = this.kapcsolattarto_telszam;
+        object[9] = this.kapcsolattarto_email;
         
         return object;
     }
@@ -146,13 +146,13 @@ public class Partner implements Egyed{
 
     @Override
     public String toString() {
-        return "Partner{" + "id=" + id + ", nev=" + nev + ", adoszam=" + adoszam + ", iranyitoszam=" + iranyitoszam + ", varos=" + varos + ", cim=" + cim + ", tipus=" + tipus + ", kapcsolattarto_nev=" + kapcsolattarto_nev + ", kapcsolattarto_email=" + kapcsolattarto_email + ", kapcsolatto_telszam=" + kapcsolatto_telszam + '}';
+        return "Partner{" + "id=" + id + ", nev=" + nev + ", adoszam=" + adoszam + ", iranyitoszam=" + iranyitoszam + ", varos=" + varos + ", cim=" + cim + ", tipus=" + tipus + ", kapcsolattarto_nev=" + kapcsolattarto_nev + ", kapcsolattarto_email=" + kapcsolattarto_email + ", kapcsolatto_telszam=" + kapcsolattarto_telszam + '}';
     }
  
     
  @Override
     public String toCSV() {
-        return nev + ";" + adoszam + ";" + iranyitoszam + ";" + varos + ";" + cim + ";" + tipus + ";" + kapcsolattarto_nev + ";" + kapcsolattarto_email + ";" + kapcsolatto_telszam;
+        return nev + ";" + adoszam + ";" + iranyitoszam + ";" + varos + ";" + cim + ";" + tipus + ";" + kapcsolattarto_nev + ";" + kapcsolattarto_email + ";" + kapcsolattarto_telszam;
     }
 
  

@@ -802,19 +802,17 @@ public class MegrendelesDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_chkExportItemStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         String[] command={"/c ipm.note","/m  valaki@gmail.com","/a D:\\evopro\\minta.pdf"};
-         String path="C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\OUTLOOK.EXE";
-         String[] valami=new String[2];
-         valami[0]=path;
-         valami[1]=" /c ipm.note /m valaki@gmail.com" ;
-         //valami[2]="/m  valaki@gmail.com";
-         
-      //C:\Users\bagi.richard>"C:\Program Files (x86)\\Microsoft Office\\root\\Office16\\OUTLOOK.EXE"  /a "D:\evopro\fiok.png" /c ipm.note /m  "janika@gmail.com&subject=abc"
-         
-        try {
-            Runtime.getRuntime().exec("C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\OUTLOOK.EXE /c ipm.note /m " +megrendeles.getPartner().getKapcsolatto_telszam()+" /a D:\\evopro\\minta.pdf");
+
+        //C:\Users\bagi.richard>"C:\Program Files (x86)\\Microsoft Office\\root\\Office16\\OUTLOOK.EXE"  /a "D:\evopro\fiok.png" /c ipm.note /m  "janika@gmail.com&subject=abc" 
+         try {
+            File pdf = new File("megrendeles" + megrendeles.getRendelesiSzam() + ".pdf");
+            SzamlaFilePDF pdfCreator = new SzamlaFilePDF(pdf);
+            pdfCreator.export(megrendeles);
+
+            Runtime.getRuntime().exec("C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\OUTLOOK.EXE /c ipm.note /m " + megrendeles.getPartner().getKapcsolattarto_email() + "&subject=megrendelés " + "/a " + pdf.getAbsolutePath());
             
-              
+          
+
         } catch (IOException ex) {
             Logger.getLogger(Foablak.class.getName()).log(Level.SEVERE, null, ex);
         }

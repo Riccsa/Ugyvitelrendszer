@@ -45,7 +45,7 @@ public class ModositPartnerDialog extends javax.swing.JDialog {
         tfCim.setText(partner.getCim());
         choiceTipus.select(partner.getTipus());
         tfUgyfelNev.setText(partner.getKapcsolattarto_nev()); 
-        tfUgyfelTelszam.setText(partner.getKapcsolatto_telszam());
+        tfUgyfelTelszam.setText(partner.getKapcsolattarto_telszam());
         tfUgyfelEmail.setText(partner.getKapcsolattarto_email());
         
         emptyCheck=new EmptyCheck();

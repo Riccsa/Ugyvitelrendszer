@@ -76,7 +76,7 @@ public class PartnerRepositoryJDBC implements RepositoryJDBC<Partner> {
         add.setString(5, p.getCim());
         add.setString(6, p.getTipus());
         add.setString(7, p.getKapcsolattarto_nev());
-        add.setString(8, p.getKapcsolatto_telszam());
+        add.setString(8, p.getKapcsolattarto_telszam());
         add.setString(9, p.getKapcsolattarto_email());
         
         add.executeUpdate();
@@ -108,7 +108,7 @@ public class PartnerRepositoryJDBC implements RepositoryJDBC<Partner> {
         update.setString(5, p.getCim());
         update.setString(6, p.getTipus());
         update.setString(7, p.getKapcsolattarto_nev());
-        update.setString(8, p.getKapcsolatto_telszam());
+        update.setString(8, p.getKapcsolattarto_telszam());
         update.setString(9, p.getKapcsolattarto_email());
         update.setInt(10, p.getId());
         update.executeUpdate();

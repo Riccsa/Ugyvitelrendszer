@@ -38,6 +38,9 @@ public class PartnerDialog extends javax.swing.JDialog {
             this.partnerJDBC = new PartnerRepositoryJDBC();
             this.partnerJTable= new PartnerJTable();
             lista=partnerJDBC.findAll();
+            for(Partner p : lista){
+                System.out.println(p.getKapcsolattarto_email());
+            }
             this.tableModel = partnerJTable.createTable(lista);
 
         } catch (SQLException ex) {
