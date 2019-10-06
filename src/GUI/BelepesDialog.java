@@ -34,6 +34,9 @@ public class BelepesDialog extends javax.swing.JDialog {
             lista = dolgozoJDBC.findAll();
             map=new HashMap<>();
         } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
           
         }
 
@@ -165,10 +168,12 @@ public class BelepesDialog extends javax.swing.JDialog {
             }
 
         } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
 
         }
 
-
+       
     }//GEN-LAST:event_btnBelepesActionPerformed
 
     private void btnKilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKilepesActionPerformed

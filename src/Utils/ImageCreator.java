@@ -1,16 +1,13 @@
 
 package Utils;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.imageio.ImageWriter;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 
 
 public class ImageCreator {
@@ -30,7 +27,7 @@ public class ImageCreator {
         try {
             ImageIO.write(bf, "jpg", new File("kep.jpg"));
         } catch (IOException ex) {
-            System.out.println("hiba történt a kép exportálása közben");
+           JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
         }
         
         return bf;

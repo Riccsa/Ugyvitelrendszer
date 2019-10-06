@@ -13,6 +13,7 @@ public class AruPattern implements Utils.Pattern.Pattern<Aru> {
 
     public AruPattern(Pattern pattern) {
         this.pattern = pattern;
+         
     }
 
     @Override
@@ -22,6 +23,7 @@ public class AruPattern implements Utils.Pattern.Pattern<Aru> {
 
         for (Aru aru : list) {
             Matcher m = pattern.matcher(aru.toString());
+            
  
             if (m.find()) {
                 newList.add(aru);

@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author bagi.richard
  */
-public class UjMegrendelesDialog extends javax.swing.JDialog {
+public class UjMegrendelesDialogNew extends javax.swing.JDialog {
 
      private List<Aru> aruLista;
      private List<Aru> ujAruLista=new ArrayList<>();
@@ -43,7 +43,7 @@ public class UjMegrendelesDialog extends javax.swing.JDialog {
      private boolean ok=false;
      private NumberFormatCheck numCheck;
              
-    public UjMegrendelesDialog(java.awt.Frame parent, boolean modal) {
+    public UjMegrendelesDialogNew(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
 
         try {
@@ -332,7 +332,7 @@ public class UjMegrendelesDialog extends javax.swing.JDialog {
       if(retValue==JOptionPane.YES_OPTION){
           ok=true;
           int rendelesiSzam=(int)(Math.random()*100000)+10000;
-          megrendeles=new Megrendeles(ujAruLista,rendelesiSzam,dolgozo,partner,LocalDateTime.now(),Megrendeles.MEGRENDELT,Megrendeles.KIMENO,calc.getSum());
+          megrendeles=new Megrendeles(ujAruLista,rendelesiSzam,dolgozo, partner,LocalDateTime.now(),Megrendeles.MEGRENDELT,Megrendeles.KIMENO,calc.getSum());
           this.setVisible(false);
  
       }
@@ -400,21 +400,23 @@ public class UjMegrendelesDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UjMegrendelesDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UjMegrendelesDialogNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UjMegrendelesDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UjMegrendelesDialogNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UjMegrendelesDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UjMegrendelesDialogNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UjMegrendelesDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UjMegrendelesDialogNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                UjMegrendelesDialog dialog = new UjMegrendelesDialog(new javax.swing.JFrame(), true);
+                UjMegrendelesDialogNew dialog = new UjMegrendelesDialogNew(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

@@ -6,9 +6,9 @@ import Check.EmptyCheck;
 import DAO.AruRepositoryJDBC;
 import DAO.MegrendelesRepositoryJDBC;
 import Egyedek.Aru;
+import Egyedek.Dolgozo;
 import Egyedek.Megrendeles;
 import File.CSVFilter;
-import File.FileNameBuilder;
 import File.MegrendelesFileCSV;
 import File.MyFileChooser;
 import File.PDFFilter;
@@ -24,17 +24,13 @@ import Utils.Pattern.MegrendelesPattern;
 import Utils.PatternFactory;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import javax.naming.spi.DirectoryManager;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -62,10 +58,10 @@ public class MegrendelesDialog extends javax.swing.JDialog {
     LocalDate teljesitDateFrom;
     LocalDate teljesitDateTo;
     MegrendelesPattern mFilter;
+    private Dolgozo dolgozo;
    
 
     public MegrendelesDialog(java.awt.Frame parent, boolean modal) {
-
         
         super(parent, modal);
         
@@ -91,6 +87,34 @@ public class MegrendelesDialog extends javax.swing.JDialog {
         setTableModel();
 
     }
+    
+    public MegrendelesDialog(java.awt.Frame parent, boolean modal, Dolgozo dolgozo) {
+        
+        super(parent, modal);
+        
+        allapotLista=new ArrayList<>();
+        tipusLista =new ArrayList<>();
+        initComponents();
+
+        MegrendelesJTable = new MegrendelesJTable();
+        datecheck = new DateCheck();
+        emptyCheck = new EmptyCheck();
+        this.dolgozo=dolgozo;
+
+
+        try {
+
+            this.megrendelesJDBC = new MegrendelesRepositoryJDBC();
+            lista = megrendelesJDBC.findByDolgozId(this.dolgozo.getId());
+            this.tableModel = MegrendelesJTable.createTable(lista);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(parent, ex.getMessage(), "SQL Hiba", JOptionPane.ERROR_MESSAGE);
+        }
+
+        setTableModel();
+
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -102,11 +126,8 @@ public class MegrendelesDialog extends javax.swing.JDialog {
         choiceRendez = new java.awt.Choice();
         tfKereses = new javax.swing.JTextField();
         btnKeres = new javax.swing.JButton();
-        lbModosit1 = new java.awt.Label();
         btnReszlet = new javax.swing.JButton();
-        lbMegrendeles = new java.awt.Label();
         btnUjMegrendeles = new javax.swing.JButton();
-        lbSzmla = new java.awt.Label();
         btnTeljesitve = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         chkbxMegrendelt = new javax.swing.JCheckBox();
@@ -128,7 +149,7 @@ public class MegrendelesDialog extends javax.swing.JDialog {
         btnUjSzamla = new javax.swing.JButton();
         lbDatumKeres3 = new java.awt.Label();
         chkExport = new java.awt.Choice();
-        jButton1 = new javax.swing.JButton();
+        btnOutlookMegrendeles = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1920, 1080));
@@ -172,9 +193,6 @@ public class MegrendelesDialog extends javax.swing.JDialog {
             }
         });
 
-        lbModosit1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        lbModosit1.setText("Új beszerzés");
-
         btnReszlet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/icons8-more-details-100.png"))); // NOI18N
         btnReszlet.setEnabled(false);
         btnReszlet.addActionListener(new java.awt.event.ActionListener() {
@@ -182,9 +200,6 @@ public class MegrendelesDialog extends javax.swing.JDialog {
                 btnReszletActionPerformed(evt);
             }
         });
-
-        lbMegrendeles.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        lbMegrendeles.setText("Részletek");
 
         btnUjMegrendeles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/add.png"))); // NOI18N
         btnUjMegrendeles.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -197,9 +212,6 @@ public class MegrendelesDialog extends javax.swing.JDialog {
                 btnUjMegrendelesActionPerformed(evt);
             }
         });
-
-        lbSzmla.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        lbSzmla.setText("Számla készítése");
 
         btnTeljesitve.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/icons8-häkchen-48.png"))); // NOI18N
         btnTeljesitve.setEnabled(false);
@@ -314,9 +326,10 @@ public class MegrendelesDialog extends javax.swing.JDialog {
             }
         });
 
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnOutlookMegrendeles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/icons8-dokument-per-e-mail-senden-48.png"))); // NOI18N
+        btnOutlookMegrendeles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnOutlookMegrendelesActionPerformed(evt);
             }
         });
 
@@ -330,28 +343,18 @@ public class MegrendelesDialog extends javax.swing.JDialog {
                         .addGap(22, 22, 22)
                         .addComponent(choiceRendez, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnUjMegrendeles, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnReszlet, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lbModosit1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbMegrendeles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnUjMegrendeles, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnReszlet, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lbSzmla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(195, 195, 195))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnUjSzamla, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(chkExport, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbDatumKeres3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnUjSzamla, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnOutlookMegrendeles, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(chkExport, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbDatumKeres3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -437,21 +440,15 @@ public class MegrendelesDialog extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnFilterTorol))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnUjMegrendeles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnReszlet, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUjSzamla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(choiceRendez, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(chkExport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lbDatumKeres3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbModosit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbMegrendeles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbSzmla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnUjMegrendeles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnReszlet, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUjSzamla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(choiceRendez, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(chkExport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbDatumKeres3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnOutlookMegrendeles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(41, 41, 41)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -488,6 +485,14 @@ public class MegrendelesDialog extends javax.swing.JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        btnUjMegrendeles.setToolTipText("Új megrendelés indítása");
+        btnReszlet.setToolTipText("Kiválasztott megrendelés részletei");
+        btnUjSzamla.setToolTipText("Kimenő megrendelés számla készítése");
+        btnOutlookMegrendeles.setToolTipText("Számla csatolása emailhez");
+        btnFilterTorol.setToolTipText("Szűrés törlése");
+        btnTeljesitve.setToolTipText("Kiválasztott megrendelés teljesítre állítása");
+        btnOutlookMegrendeles.setEnabled(false);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -540,6 +545,8 @@ public class MegrendelesDialog extends javax.swing.JDialog {
             this.tableModel = MegrendelesJTable.createTable(filter.findByPattern(megrendelesJDBC.findAll()));
 
         } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
 
         }
 
@@ -580,7 +587,7 @@ public class MegrendelesDialog extends javax.swing.JDialog {
                 }
 
             } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
+               JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
 
             }
         }
@@ -614,6 +621,8 @@ public class MegrendelesDialog extends javax.swing.JDialog {
                 setTableModel();
 
             } catch (SQLException ex) {
+                
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
 
             }
 
@@ -723,6 +732,8 @@ public class MegrendelesDialog extends javax.swing.JDialog {
         try {
             this.tableModel=MegrendelesJTable.createTable(megrendelesJDBC.findAll());
         } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
            
         }
         setTableModel();
@@ -740,8 +751,6 @@ public class MegrendelesDialog extends javax.swing.JDialog {
      
             SzamlaSablonDialog szamla=new SzamlaSablonDialog(null, true, megrendeles);
             szamla.setVisible(true);
-     
-        
         
     }//GEN-LAST:event_btnUjSzamlaActionPerformed
 
@@ -753,6 +762,8 @@ public class MegrendelesDialog extends javax.swing.JDialog {
             try {
                 megrendeles = megrendelesJDBC.findById(selectedId);
             } catch (SQLException ex) {
+                
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
 
             }
         }
@@ -760,6 +771,7 @@ public class MegrendelesDialog extends javax.swing.JDialog {
         btnReszlet.setEnabled(megrendeles != null);
         btnTeljesitve.setEnabled(megrendeles != null && megrendeles.getAllapot().equals(Megrendeles.MEGRENDELT));
         btnUjSzamla.setEnabled(megrendeles.getTipus().equals(Megrendeles.BEJOVO));
+        btnOutlookMegrendeles.setEnabled(megrendeles!=null && megrendeles.getTipus().equals("bejövő"));
     }//GEN-LAST:event_jTableMegrendelesMouseReleased
 
     private void chkExportItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkExportItemStateChanged
@@ -772,7 +784,6 @@ public class MegrendelesDialog extends javax.swing.JDialog {
             chooser.setDialogType(JFileChooser.CUSTOM_DIALOG);
 
             int retValue = 0;
-            FileNameBuilder builder;
 
             switch (chkExport.getSelectedItem()) {
                 case ("*.csv"):
@@ -801,22 +812,23 @@ public class MegrendelesDialog extends javax.swing.JDialog {
 
     }//GEN-LAST:event_chkExportItemStateChanged
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnOutlookMegrendelesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOutlookMegrendelesActionPerformed
 
         //C:\Users\bagi.richard>"C:\Program Files (x86)\\Microsoft Office\\root\\Office16\\OUTLOOK.EXE"  /a "D:\evopro\fiok.png" /c ipm.note /m  "janika@gmail.com&subject=abc" 
+        
+        if(megrendeles!=null){
          try {
             File pdf = new File("megrendeles" + megrendeles.getRendelesiSzam() + ".pdf");
             SzamlaFilePDF pdfCreator = new SzamlaFilePDF(pdf);
             pdfCreator.export(megrendeles);
 
             Runtime.getRuntime().exec("C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\OUTLOOK.EXE /c ipm.note /m " + megrendeles.getPartner().getKapcsolattarto_email() + "&subject=megrendelés " + "/a " + pdf.getAbsolutePath());
-            
-          
 
         } catch (IOException ex) {
-            Logger.getLogger(Foablak.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        }
+    }//GEN-LAST:event_btnOutlookMegrendelesActionPerformed
 
     private void setTableModel() {
 
@@ -865,7 +877,7 @@ public class MegrendelesDialog extends javax.swing.JDialog {
             this.tableModel = MegrendelesJTable.createTable(filteredList);
             setTableModel();
         } catch (SQLException ex) {
-            Logger.getLogger(MegrendelesDialog.class.getName()).log(Level.SEVERE, null, ex);
+           JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
         }
         
     }
@@ -929,6 +941,7 @@ public class MegrendelesDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFilterTorol;
     private javax.swing.JButton btnKeres;
+    private javax.swing.JButton btnOutlookMegrendeles;
     private javax.swing.JButton btnReszlet;
     private javax.swing.JButton btnTeljesitve;
     private javax.swing.JButton btnUjMegrendeles;
@@ -939,7 +952,6 @@ public class MegrendelesDialog extends javax.swing.JDialog {
     private javax.swing.JCheckBox chkbxMegrendelt;
     private javax.swing.JCheckBox chkbxTeljesitett;
     private java.awt.Choice choiceRendez;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -952,9 +964,6 @@ public class MegrendelesDialog extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTableMegrendeles;
     private java.awt.Label lbDatumKeres3;
-    private java.awt.Label lbMegrendeles;
-    private java.awt.Label lbModosit1;
-    private java.awt.Label lbSzmla;
     private javax.swing.JTextField tfKereses;
     private javax.swing.JTextField tfRogzitDateFrom;
     private javax.swing.JTextField tfRogzitDateTo;

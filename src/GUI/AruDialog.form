@@ -59,6 +59,9 @@
           <Dimension value="[1980, 1080]"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="btnCSVExport.setToolTipText(&quot;&#xc1;rulista export&#xe1;l&#xe1;sa CSV f&#xe1;jlba&quot;);&#xd;&#xa;btnTortenet.setToolTipText(&quot;Kiv&#xe1;lasztott &#xe1;ru mozg&#xe1;s&#xe1;nak lek&#xe9;rdez&#xe9;se&quot;);&#xd;&#xa;btnModosit.setToolTipText(&quot;&#xc1;ru adatainak m&#xf3;dos&#xed;t&#xe1;sa&quot;);&#xd;&#xa;btnUjAru.setToolTipText(&quot;&#xda;j &#xe1;ru felv&#xe9;tele&quot;);&#xd;&#xa;btnFilterTorol.setToolTipText(&quot;Sz&#x171;r&#xe9;s t&#xf6;rl&#xe9;se&quot;);&#xd;&#xa;btnRendel.setToolTipText(&quot;Hi&#xe1;nyz&#xf3; &#xe1;ruk ut&#xe1;nrendel&#xe9;se&quot;);&#xd;&#xa;"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

@@ -17,10 +17,11 @@ public class DolgozoRepositoryJDBC implements RepositoryJDBC<Dolgozo> {
     private PreparedStatement findAll;
     private PreparedStatement findByName;
     private PreparedStatement findById;
-    private PreparedStatement findPasswordByDolgozoId;
+    private PreparedStatement findPasswordById;
     private PreparedStatement add;
     private PreparedStatement delete;
     private PreparedStatement update;
+    private PreparedStatement findAccesLevelById;
     private Integer generatedKey;
 
     public DolgozoRepositoryJDBC() throws SQLException {
@@ -30,7 +31,8 @@ public class DolgozoRepositoryJDBC implements RepositoryJDBC<Dolgozo> {
         this.findAll = SQL.getConnection().prepareStatement("SELECT * FROM dolgozo;");
         this.findById = SQL.getConnection().prepareStatement("SELECT * FROM dolgozo WHERE id=?;");
         this.findByName = SQL.getConnection().prepareStatement("SELECT * FROM dolgozo WHERE nev=?;");
-        this.findPasswordByDolgozoId = SQL.getConnection().prepareStatement("SELECT * FROM ugyvitel.jelszo WHERE dolgozo_id=?");
+        this.findPasswordById = SQL.getConnection().prepareStatement("SELECT jelszo FROM ugyvitel.jelszo WHERE dolgozo_id=?");
+        this.findAccesLevelById = SQL.getConnection().prepareStatement("SELECT szint FROM ugyvitel.jelszo WHERE dolgozo_id=?");
         this.delete = SQL.getConnection().prepareStatement("DELETE FROM dolgozo WHERE id=?;");
 
     }
@@ -58,6 +60,17 @@ public class DolgozoRepositoryJDBC implements RepositoryJDBC<Dolgozo> {
 
         return null;
 
+    }
+    
+    public String findAccesLevelById(int id) throws SQLException{
+        findAccesLevelById.setInt(1, id);
+        ResultSet rs = findAccesLevelById.executeQuery();
+        String accessLevel="";
+        while (rs.next()) {
+           accessLevel = rs.getString("szint");
+        }
+
+        return accessLevel;
     }
 
     @Override
@@ -106,8 +119,8 @@ public class DolgozoRepositoryJDBC implements RepositoryJDBC<Dolgozo> {
 
     public String findPassWordByDolgozoId(Integer id) throws SQLException {
 
-        findPasswordByDolgozoId.setInt(1, id);
-        ResultSet rs = findPasswordByDolgozoId.executeQuery();
+        findPasswordById.setInt(1, id);
+        ResultSet rs = findPasswordById.executeQuery();
         String passWord = "";
 
         while (rs.next()) {

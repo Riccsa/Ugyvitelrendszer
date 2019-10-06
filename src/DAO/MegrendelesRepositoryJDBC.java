@@ -22,6 +22,7 @@ public class MegrendelesRepositoryJDBC  implements RepositoryJDBC<Megrendeles>{
     private PreparedStatement findByName;
     private PreparedStatement findAruList;
     private PreparedStatement findById;
+    private PreparedStatement findByDolgozoId;
     private PreparedStatement orderByTeljesitDatum;
     private PreparedStatement orderByTeljesitDatumDesc;
     private PreparedStatement orderByRogzitDatum;
@@ -45,6 +46,7 @@ public class MegrendelesRepositoryJDBC  implements RepositoryJDBC<Megrendeles>{
         this.orderByTeljesitDatum = SQL.getConnection().prepareStatement("SELECT * FROM megrendeles ORDER BY teljesites_datuma"); 
         this.orderByTeljesitDatumDesc = SQL.getConnection().prepareStatement("SELECT * FROM megrendeles ORDER BY teljesites_datuma DESC");
         this.findById = SQL.getConnection().prepareStatement("SELECT * FROM megrendeles WHERE id=?");
+        this.findByDolgozoId = SQL.getConnection().prepareStatement("SELECT * FROM megrendeles WHERE dolgozo_id=?");
         this.findAruList = SQL.getConnection().prepareStatement("SELECT * FROM kapcsolat_aru_megrendeles WHERE megrendeles_id=?;");
         this.findByName =SQL.getConnection().prepareStatement("SELECT * FROM megrendeles WHERE rendelesi_szam=?" );           
     }   
@@ -71,6 +73,11 @@ public class MegrendelesRepositoryJDBC  implements RepositoryJDBC<Megrendeles>{
         }
 
         return null;
+    }
+    
+    public List<Megrendeles> findByDolgozId(int id) throws SQLException {
+        findByDolgozoId.setInt(1, id);
+        return makeList(findByDolgozoId.executeQuery());
     }
     
 

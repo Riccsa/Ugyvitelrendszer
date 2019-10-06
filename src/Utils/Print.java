@@ -5,12 +5,12 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Paint;
 import java.awt.print.PageFormat;
 import java.awt.print.Pageable;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import javax.swing.JOptionPane;
 
 public class Print implements Printable, Pageable {
 
@@ -38,7 +38,7 @@ public class Print implements Printable, Pageable {
             try {
                 printJob.print();
             } catch (PrinterException pe) {
-                System.out.println("Error printing: " + pe);
+               JOptionPane.showMessageDialog(null, pe.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -71,8 +71,6 @@ public class Print implements Printable, Pageable {
     @Override
     public Printable getPrintable(int pageIndex) throws IndexOutOfBoundsException {
         return this;
-    }
-    
-    
+    }  
 
 }

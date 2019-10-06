@@ -20,15 +20,15 @@ public class PartnerJTable implements JTable<Partner> {
         }
 
         Object[] row;
-        
-        if(partnerek!=null){
 
-        for (Partner p : partnerek) {
+        if (partnerek != null) {
 
-            row = p.toObjectRow();
-            tableModel.addRow(row);
+            for (Partner p : partnerek) {
 
-        }
+                row = p.toObjectRow();
+                tableModel.addRow(row);
+
+            }
         }
 
         return tableModel;

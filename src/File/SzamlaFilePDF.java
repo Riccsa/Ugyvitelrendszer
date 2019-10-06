@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class SzamlaFilePDF extends FilePDF {
 
@@ -53,7 +54,7 @@ public class SzamlaFilePDF extends FilePDF {
             super.close();
             super.save();
         } catch (IOException ex) {
-            System.out.println("hiba");
+           JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
         }
 
     }

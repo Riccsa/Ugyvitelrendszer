@@ -455,6 +455,13 @@ public class AruDialog extends javax.swing.JDialog {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        btnCSVExport.setToolTipText("Árulista exportálása CSV fájlba");
+        btnTortenet.setToolTipText("Kiválasztott áru mozgásának lekérdezése");
+        btnModosit.setToolTipText("Áru adatainak módosítása");
+        btnUjAru.setToolTipText("Új áru felvétele");
+        btnFilterTorol.setToolTipText("Szűrés törlése");
+        btnRendel.setToolTipText("Hiányzó áruk utánrendelése");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -547,6 +554,8 @@ public class AruDialog extends javax.swing.JDialog {
                 aruLista.add(aru);
             }
         } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
 
         }
 
@@ -644,6 +653,8 @@ public class AruDialog extends javax.swing.JDialog {
             try {
                 aru = aruJDBC.findById(selectedId);
             } catch (SQLException ex) {
+                
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
 
             }
            

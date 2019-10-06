@@ -301,6 +301,8 @@ public class PartnerDialog extends javax.swing.JDialog {
                                     }
                 
                             } catch (SQLException ex) {
+                                JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
+                                
                                
                             }
                     }
@@ -321,7 +323,7 @@ public class PartnerDialog extends javax.swing.JDialog {
                 partnerJTable.add(partnerJDBC.findById(partnerJDBC.add(partner)), tableModel);
 
             } catch (SQLException ex) {
-                Logger.getLogger(DolgozoDialog.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
             }
         }
         
@@ -355,6 +357,8 @@ public class PartnerDialog extends javax.swing.JDialog {
                         this.tableModel = partnerJTable.createTable(filter.findByPattern(partnerJDBC.findAll()));
             
                     } catch (SQLException ex) {
+                        
+                        JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
             
                     }
         
@@ -386,6 +390,8 @@ if (choiceRendez.getSelectedIndex() != 0) {
                 setTableModel();
 
             } catch (SQLException ex) {
+                
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
 
             }
 

@@ -51,6 +51,9 @@
           <Dimension value="[1920, 1080]"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="btnUjMegrendeles.setToolTipText(&quot;&#xda;j megrendel&#xe9;s ind&#xed;t&#xe1;sa&quot;);&#xd;&#xa;btnReszlet.setToolTipText(&quot;Kiv&#xe1;lasztott megrendel&#xe9;s r&#xe9;szletei&quot;);&#xd;&#xa;btnUjSzamla.setToolTipText(&quot;Kimen&#x151; megrendel&#xe9;s sz&#xe1;mla k&#xe9;sz&#xed;t&#xe9;se&quot;);&#xd;&#xa;btnOutlookMegrendeles.setToolTipText(&quot;Sz&#xe1;mla csatol&#xe1;sa emailhez&quot;);&#xd;&#xa;btnFilterTorol.setToolTipText(&quot;Sz&#x171;r&#xe9;s t&#xf6;rl&#xe9;se&quot;);&#xd;&#xa;btnTeljesitve.setToolTipText(&quot;Kiv&#xe1;lasztott megrendel&#xe9;s teljes&#xed;tre &#xe1;ll&#xed;t&#xe1;sa&quot;);&#xd;&#xa;btnOutlookMegrendeles.setEnabled(false);&#xd;&#xa;"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -61,34 +64,18 @@
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Component id="choiceRendez" min="-2" pref="323" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="btnUjMegrendeles" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="btnReszlet" min="-2" pref="80" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lbModosit1" min="-2" pref="83" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lbMegrendeles" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="btnUjMegrendeles" min="-2" pref="80" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="btnReszlet" min="-2" pref="80" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="lbSzmla" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="195" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="btnUjSzamla" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jButton1" min="-2" pref="76" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="chkExport" min="-2" pref="75" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lbDatumKeres3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="btnUjSzamla" min="-2" pref="80" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btnOutlookMegrendeles" min="-2" pref="76" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="chkExport" min="-2" pref="75" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lbDatumKeres3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="jSeparator1" min="-2" pref="15" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -199,24 +186,16 @@
                           <Component id="btnFilterTorol" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jSeparator1" min="-2" pref="118" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnUjMegrendeles" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnReszlet" min="-2" pref="80" max="-2" attributes="0"/>
-                              <Component id="btnUjSzamla" max="32767" attributes="0"/>
-                              <Component id="choiceRendez" min="-2" pref="48" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Component id="chkExport" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbDatumKeres3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jButton1" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnUjMegrendeles" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnReszlet" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="btnUjSzamla" max="32767" attributes="0"/>
+                          <Component id="choiceRendez" min="-2" pref="48" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="chkExport" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbDatumKeres3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lbModosit1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbMegrendeles" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbSzmla" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="btnOutlookMegrendeles" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
@@ -296,14 +275,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKeresActionPerformed"/>
           </Events>
         </Component>
-        <Component class="java.awt.Label" name="lbModosit1">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="&#xda;j beszerz&#xe9;s"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="btnReszlet">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -316,14 +287,6 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnReszlet.setEnabled(false);&#xd;&#xa;"/>
           </AuxValues>
-        </Component>
-        <Component class="java.awt.Label" name="lbMegrendeles">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="R&#xe9;szletek"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnUjMegrendeles">
           <Properties>
@@ -345,14 +308,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUjMegrendelesActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="java.awt.Label" name="lbSzmla">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Sz&#xe1;mla k&#xe9;sz&#xed;t&#xe9;se"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnTeljesitve">
           <Properties>
@@ -520,9 +475,14 @@
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="chkExport.add(&quot;&quot;);&#xd;&#xa;chkExport.add(&quot;*.csv&quot;);&#xd;&#xa;chkExport.add(&quot;*.pdf&quot;);&#xd;&#xa;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnOutlookMegrendeles">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/GUI/images/icons8-dokument-per-e-mail-senden-48.png"/>
+            </Property>
+          </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOutlookMegrendelesActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 
 public class PartnerFileCSV implements FileCSV<Partner>{
@@ -32,6 +33,8 @@ public class PartnerFileCSV implements FileCSV<Partner>{
                pw.close();
 
         } catch (IOException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
                          
         }
         

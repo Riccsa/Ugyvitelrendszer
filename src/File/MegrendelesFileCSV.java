@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 
 public class MegrendelesFileCSV implements FileCSV<Megrendeles> {
@@ -32,6 +33,8 @@ public class MegrendelesFileCSV implements FileCSV<Megrendeles> {
             pw.close();
 
         } catch (IOException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
 
         }
 

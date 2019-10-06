@@ -3,6 +3,7 @@ package File;
 
 import java.io.File;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -29,7 +30,7 @@ public class FilePDF {
             timesBold = PDType0Font.load(doc, new File("c:/windows/fonts/timesbd.ttf"));
             cont = new PDPageContentStream(doc, page);
         } catch (IOException ex) {
-            System.out.println("Hiba a font betöltése közben!");
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
             
         }
         

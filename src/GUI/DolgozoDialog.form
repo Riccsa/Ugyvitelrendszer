@@ -48,6 +48,9 @@
           <Dimension value="[1920, 1080]"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="btnMegrendeles.setEnabled(false);&#xd;&#xa;"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -186,7 +189,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="buttonPanel.setVisible(false);&#xd;&#xa;"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="&#xd;&#xa;"/>
           </AuxValues>
 
           <Layout>
@@ -194,41 +197,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnUjDolgozo" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                              <Component id="lbModosit1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnModosit" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                              <Component id="lbUj" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="btnTorol" min="-2" pref="80" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lbTorol" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lbModosit2" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="btnTorol1" min="-2" pref="80" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
+                      <Component id="btnUjDolgozo" min="-2" pref="80" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="btnModosit" min="-2" pref="80" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="btnTorol" min="-2" pref="80" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                      <Component id="btnMegrendeles" min="-2" pref="80" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -242,16 +218,9 @@
                               <Component id="btnModosit" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
                               <Component id="btnTorol" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="btnTorol1" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="btnMegrendeles" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lbUj" max="32767" attributes="0"/>
-                          <Component id="lbModosit1" alignment="1" max="32767" attributes="0"/>
-                          <Component id="lbTorol" alignment="1" max="32767" attributes="0"/>
-                          <Component id="lbModosit2" alignment="1" pref="38" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace pref="58" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -269,6 +238,9 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModositActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnModosit.setEnabled(User.jogosultsag.equals(&quot;admin&quot;));&#xd;&#xa;"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="btnUjDolgozo">
               <Properties>
@@ -290,6 +262,9 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUjDolgozoActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnUjDolgozo.setEnabled(User.jogosultsag.equals(&quot;admin&quot;));&#xd;&#xa;"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="btnTorol">
               <Properties>
@@ -300,45 +275,20 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTorolActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnTorol.setEnabled(User.jogosultsag.equals(&quot;admin&quot;));&#xd;&#xa;"/>
+              </AuxValues>
             </Component>
-            <Component class="java.awt.Label" name="lbUj">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Dialog" size="18" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="M&#xf3;dos&#xed;t"/>
-              </Properties>
-            </Component>
-            <Component class="java.awt.Label" name="lbModosit1">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Dialog" size="18" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Hozz&#xe1;ad"/>
-              </Properties>
-            </Component>
-            <Component class="java.awt.Label" name="lbTorol">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Dialog" size="18" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="T&#xf6;r&#xf6;l"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnTorol1">
+            <Component class="javax.swing.JButton" name="btnMegrendeles">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/GUI/images/icons8-purchase-order-64.png"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Dolgoz&#xf3;khoz tartoz&#xf3; megrendel&#xe9;sek list&#xe1;z&#xe1;sa"/>
               </Properties>
-            </Component>
-            <Component class="java.awt.Label" name="lbModosit2">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Dialog" size="18" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Megrendel&#xe9;sek"/>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMegrendelesActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

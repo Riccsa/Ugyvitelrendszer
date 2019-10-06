@@ -1,20 +1,34 @@
 
 package Egyedek;
 
+import DAO.DolgozoRepositoryJDBC;
+import java.sql.SQLException;
+
 
 public abstract class User {
     
-    private static Dolgozo ACTIVE_USER=null;
+    public static  String jogosultsag;
+    public static  String nev;
+    public static  Integer id;
+
     
-   
-   public static void setActiveUser(Dolgozo dolgozo){
-       if(User.ACTIVE_USER==null && dolgozo!=null){
-           User.ACTIVE_USER=dolgozo;
+   public static void setActiveUser(Dolgozo dolgozo) throws SQLException{
+       
+       DolgozoRepositoryJDBC jdbc=new DolgozoRepositoryJDBC();
+       if(jogosultsag==null && nev==null && id==null){
+       User.nev=dolgozo.getNev();
+       User.id=dolgozo.getId();
+       User.jogosultsag=jdbc.findAccesLevelById(dolgozo.getId());
        }
+     
    }
    
-   public static Dolgozo geActiveUser(){
-       return User.ACTIVE_USER;
-   }
+
+   
+   
+   
+   
+   
+
     
 }

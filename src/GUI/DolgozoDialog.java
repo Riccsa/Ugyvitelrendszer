@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import DAO.DolgozoRepositoryJDBC;
 import Egyedek.Dolgozo;
+import Egyedek.User;
 import JTable.DolgozoJTable;
 import Utils.Comparator.DolgozoDatumComparator;
 import Utils.Comparator.DolgozoNevComparator;
@@ -42,11 +43,7 @@ public class DolgozoDialog extends javax.swing.JDialog {
         btnModosit = new javax.swing.JButton();
         btnUjDolgozo = new javax.swing.JButton();
         btnTorol = new javax.swing.JButton();
-        lbUj = new java.awt.Label();
-        lbModosit1 = new java.awt.Label();
-        lbTorol = new java.awt.Label();
-        btnTorol1 = new javax.swing.JButton();
-        lbModosit2 = new java.awt.Label();
+        btnMegrendeles = new javax.swing.JButton();
         choiceRendez = new java.awt.Choice();
         jLabel1 = new javax.swing.JLabel();
         lbTalalatDb = new javax.swing.JLabel();
@@ -86,10 +83,10 @@ public class DolgozoDialog extends javax.swing.JDialog {
         }
 
         buttonPanel.setBackground(new java.awt.Color(218, 231, 245));
-        buttonPanel.setVisible(false);
 
         btnModosit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/edit_user_male_64px.png"))); // NOI18N
         btnModosit.setPreferredSize(new java.awt.Dimension(60, 60));
+        btnModosit.setEnabled(User.jogosultsag.equals("admin"));
         btnModosit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModositActionPerformed(evt);
@@ -102,6 +99,7 @@ public class DolgozoDialog extends javax.swing.JDialog {
         btnUjDolgozo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnUjDolgozo.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         btnUjDolgozo.setFocusable(false);
+        btnUjDolgozo.setEnabled(User.jogosultsag.equals("admin"));
         btnUjDolgozo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUjDolgozoActionPerformed(evt);
@@ -109,25 +107,20 @@ public class DolgozoDialog extends javax.swing.JDialog {
         });
 
         btnTorol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/remove_user_male_64px.png"))); // NOI18N
+        btnTorol.setEnabled(User.jogosultsag.equals("admin"));
         btnTorol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTorolActionPerformed(evt);
             }
         });
 
-        lbUj.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lbUj.setText("Módosít");
-
-        lbModosit1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lbModosit1.setText("Hozzáad");
-
-        lbTorol.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lbTorol.setText("Töröl");
-
-        btnTorol1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/icons8-purchase-order-64.png"))); // NOI18N
-
-        lbModosit2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lbModosit2.setText("Megrendelések");
+        btnMegrendeles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/images/icons8-purchase-order-64.png"))); // NOI18N
+        btnMegrendeles.setToolTipText("Dolgozókhoz tartozó megrendelések listázása");
+        btnMegrendeles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMegrendelesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout buttonPanelLayout = new javax.swing.GroupLayout(buttonPanel);
         buttonPanel.setLayout(buttonPanelLayout);
@@ -135,32 +128,14 @@ public class DolgozoDialog extends javax.swing.JDialog {
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnUjDolgozo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(buttonPanelLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(lbModosit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnModosit, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(buttonPanelLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(lbUj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(buttonPanelLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(btnTorol, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbTorol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)))
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbModosit2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(buttonPanelLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(btnTorol1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(148, 148, 148))
+                .addComponent(btnUjDolgozo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnModosit, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(btnTorol, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(btnMegrendeles, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(175, 175, 175))
         );
         buttonPanelLayout.setVerticalGroup(
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,14 +146,8 @@ public class DolgozoDialog extends javax.swing.JDialog {
                         .addComponent(btnUjDolgozo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnModosit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnTorol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnTorol1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbUj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbModosit1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbTorol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbModosit2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(btnMegrendeles, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         choiceRendez.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -267,6 +236,8 @@ public class DolgozoDialog extends javax.swing.JDialog {
                 .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        btnMegrendeles.setEnabled(false);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -317,7 +288,20 @@ public class DolgozoDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnUjDolgozoActionPerformed
 
     private void jTableDolgozoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableDolgozoMouseClicked
+            int selectedRow = jTableDolgozo.getSelectedRow();
 
+        if (selectedRow > -1) {
+            int selectedId = (Integer) tableModel.getValueAt(jTableDolgozo.getSelectedRow(), 0);
+
+            try {
+                dolgozo=dolgozoJDBC.findById(selectedId);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
+        btnMegrendeles.setEnabled(dolgozo!=null);
+        
     }//GEN-LAST:event_jTableDolgozoMouseClicked
 
     private void btnTorolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTorolActionPerformed
@@ -394,12 +378,19 @@ public class DolgozoDialog extends javax.swing.JDialog {
                 setTableModel();
 
             } catch (SQLException ex) {
+                
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Hiba", JOptionPane.ERROR_MESSAGE);
 
             }
 
         }
 
     }//GEN-LAST:event_choiceRendezItemStateChanged
+
+    private void btnMegrendelesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMegrendelesActionPerformed
+        MegrendelesDialog megrendelesDialog=new MegrendelesDialog(null,true,dolgozo);
+        megrendelesDialog.setVisible(true);
+    }//GEN-LAST:event_btnMegrendelesActionPerformed
 
     
     private void setTableModel() {
@@ -455,20 +446,16 @@ public class DolgozoDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPanel;
     private javax.swing.JButton btnKeres;
+    private javax.swing.JButton btnMegrendeles;
     private javax.swing.JButton btnModosit;
     private javax.swing.JButton btnTorol;
-    private javax.swing.JButton btnTorol1;
     private javax.swing.JButton btnUjDolgozo;
     private javax.swing.JPanel buttonPanel;
     private java.awt.Choice choiceRendez;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableDolgozo;
-    private java.awt.Label lbModosit1;
-    private java.awt.Label lbModosit2;
     private javax.swing.JLabel lbTalalatDb;
-    private java.awt.Label lbTorol;
-    private java.awt.Label lbUj;
     private javax.swing.JTextField tfKereses;
     // End of variables declaration//GEN-END:variables
 
